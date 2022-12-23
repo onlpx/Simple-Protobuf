@@ -1,3 +1,6 @@
+class Proto{static dumps(t){return"{"+Object.keys(t).map(s=>`${s}:'${t[s]}'`).join(",")+"}"}static jsoncompress(t){return this.compress(this.stringify(t))}static stringify(t){const s={};let r=0;for(const e in t)s[r]=t[e],r++;return this.dumps(s)}static decompress(t){let s,r,e,n,o,i,c,h;for(s=h={},o=[e=n=(r=t.split(""))[0]],i=c=256,t=1;t<r.length;t++)s=i>(s=r[t].charCodeAt(0))?r[t]:h[s]?h[s]:n+e,o.push(s),e=s.charAt(0),h[c]=n+e,c++,n=s;return o.join("")}static compress(t){let s,r,e,n,o,i,c;for(s="charCodeAt",r=c={},n=[],o=(e=t.split(""))[0],i=256,r=1;r<e.length;r++)null==c[o+(t=e[r])]?(n.push(1<o.length?c[o]:o[s](0)),c[o+t]=i,i++,o=t):o+=t;for(n.push(1<o.length?c[o]:o[s](0)),r=0;r<n.length;r++)n[r]=String.fromCharCode(n[r]);return n.join("")}}
+// 2022 @ onlp
+
 json = {
     "_id": "63a5b11503e1f203431ed1a2",
     "index": 0,
@@ -25,5 +28,9 @@ console.log('compressed              /', Proto.compress(JSON.stringify(json)).le
 console.log('"protobuf" compressed   /', Proto.jsoncompress(json).length, 'chrs')
 console.log('"protobuf" uncompressed /', Proto.stringify(json).length, 'chrs')
 
+// -- ouput:
 
-class Proto{static dumps(t){return"{"+Object.keys(t).map(s=>`${s}:'${t[s]}'`).join(",")+"}"}static jsoncompress(t){return this.compress(this.stringify(t))}static stringify(t){const s={};let r=0;for(const e in t)s[r]=t[e],r++;return this.dumps(s)}static decompress(t){let s,r,e,n,o,i,c,h;for(s=h={},o=[e=n=(r=t.split(""))[0]],i=c=256,t=1;t<r.length;t++)s=i>(s=r[t].charCodeAt(0))?r[t]:h[s]?h[s]:n+e,o.push(s),e=s.charAt(0),h[c]=n+e,c++,n=s;return o.join("")}static compress(t){let s,r,e,n,o,i,c;for(s="charCodeAt",r=c={},n=[],o=(e=t.split(""))[0],i=256,r=1;r<e.length;r++)null==c[o+(t=e[r])]?(n.push(1<o.length?c[o]:o[s](0)),c[o+t]=i,i++,o=t):o+=t;for(n.push(1<o.length?c[o]:o[s](0)),r=0;r<n.length;r++)n[r]=String.fromCharCode(n[r]);return n.join("")}}
+// initial length          / 617 chrs
+// compressed              / 439 chrs
+// "protobuf" compressed   / 378 chrs
+// "protobuf" uncompressed / 506 chrs

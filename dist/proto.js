@@ -1,4 +1,4 @@
-class Proto {
+export default class Proto {
 	static dumps(obj) {
 		return '{' + Object.keys(obj).map(key => `${key}:'${obj[key]}'`).join(',') + '}';
 	}
