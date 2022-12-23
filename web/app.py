@@ -5,8 +5,8 @@ app = Flask(__name__, template_folder='./assets')
 def transformKeys(obj_str, arr):
     transformed = {}
 
-    for pair in obj_str[1:-1].split(','):
-        print(pair)
+    for pair in obj_str[1:-1].split("',"):
+        pair += "'"
         key, value                 = pair.split(':')
         transformed[arr[int(key)]] = value.replace('"', '').replace("'", '').strip()
 
@@ -39,14 +39,9 @@ def index():
 @app.route("/test", methods=['POST'])
 def test(): 
     dec = decomp(request.data.decode('utf-8'))
-    print(dec)
     
     keys = ["_id", "index", "guid", "address", "about"]
-    print(transformKeys(dec, keys))
-    
-    
-    return {}
-
+    return transformKeys(dec, keys)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80)
