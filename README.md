@@ -1,6 +1,6 @@
-pre alpha
+**pre alpha**
 
-easy Protobuf implementation in javascript and python
+-- easy Protobuf-like implementation (compression & other methods) in javascript and python 
 
 ```javascript
 console.log('initial length          /', JSON.stringify(json).length, 'chrs');
